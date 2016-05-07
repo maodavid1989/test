@@ -1,0 +1,52 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+<title>Test Front-to-End</title>
+</head>
+
+<body>
+
+	<h1>Test Front-to-End</h1>
+
+	<div id="grid">
+		<table>
+			<tr><td id="x00"></td><td id="x01"></td><td id="x02"></td><td id="x03"></td></tr>
+			<tr><td id="x04"></td><td id="x05"></td><td id="x06"></td><td id="x07"></td></tr>
+			<tr><td id="x08"></td><td id="x09"></td><td id="x010"></td><td id="x011"></td></tr>
+		</table>
+	</div>
+
+</body>
+<script>
+window.onload= function(){
+	console.log('start');
+	
+	var numbers = [];
+	
+	while (numbers.length < 12) {
+        var randomNumber = (parseInt(Math.random() * 12));
+        if (numbers.indexOf(randomNumber) == -1) {
+            numbers.push(randomNumber);
+        }
+    }
+	alert(numbers);
+	//random 0 to 11
+	var i=0;
+	while (numbers.length > 0) {
+		var imgId="x0"+i;
+		var img = new Image();
+		var div = document.getElementById(imgId).appendChild(img);
+		img.src = 'images/'+numbers.pop()+'.png';
+		i++;
+	}
+
+}
+
+
+
+</script>
+</html>
