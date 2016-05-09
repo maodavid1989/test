@@ -1,7 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -10,40 +7,69 @@
 
 <body>
 
-	<h1>Test Front-to-End</h1>
+	<h1 align="center">Test Front-to-End</h1>
 
 	<div id="grid">
-		<table>
-			<tr><td id="x00"></td><td id="x01"></td><td id="x02"></td><td id="x03"></td></tr>
-			<tr><td id="x04"></td><td id="x05"></td><td id="x06"></td><td id="x07"></td></tr>
-			<tr><td id="x08"></td><td id="x09"></td><td id="x010"></td><td id="x011"></td></tr>
+		<table border="1" align="center">
+			<tr>
+				<td height="160" width="160" id="x00"></td>
+				<td height="160" width="160" id="x01"></td>
+				<td height="160" width="160" id="x02"></td>
+				<td height="160" width="160" id="x03"></td>
+			</tr>
+			<tr>
+				<td height="160" width="160" id="x04"></td>
+				<td height="160" width="160" id="x05"></td>
+				<td height="160" width="160" id="x06"></td>
+				<td height="160" width="160" id="x07"></td>
+			</tr>
+			<tr>
+				<td height="160" width="160" id="x08"></td>
+				<td height="160" width="160" id="x09"></td>
+				<td height="160" width="160" id="x010"></td>
+				<td height="160" width="160" id="x011"></td>
+			</tr>
 		</table>
 	</div>
 
 </body>
 <script>
+var numbers = [];
+var appendNums =[];
+var i=0;
 window.onload= function(){
-	console.log('start');
-	
-	var numbers = [];
-	
+	console.log('start');	
 	while (numbers.length < 12) {
         var randomNumber = (parseInt(Math.random() * 12));
         if (numbers.indexOf(randomNumber) == -1) {
             numbers.push(randomNumber);
         }
     }
-	alert(numbers);
-	//random 0 to 11
-	var i=0;
-	while (numbers.length > 0) {
-		var imgId="x0"+i;
-		var img = new Image();
-		var div = document.getElementById(imgId).appendChild(img);
-		img.src = 'images/'+numbers.pop()+'.png';
-		i++;
-	}
+	while (appendNums.length < 12) {
+        var randomNumber = (parseInt(Math.random() * 12));
+        if (appendNums.indexOf(randomNumber) == -1) {
+            appendNums.push(randomNumber);
+        }
+    }	
+	
+	//alert(numbers);
+	//alert(appendNums);
+	appendImg();
+}
 
+
+function appendImg () { 
+	var img = new Image();
+	setTimeout(function () {
+		var imgId="x0"+appendNums[i];
+		var div = document.getElementById(imgId).appendChild(img);
+		img.src = 'images/'+numbers[i]+'.png';
+		if (i < 12 - 1) {   
+			i++;
+			appendImg(); 			
+		}
+		
+	}, 200)
 }
 
 
