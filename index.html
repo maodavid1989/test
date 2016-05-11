@@ -5,13 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 	<title>Test Front-to-End</title>
-	<link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css" />
-	<link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css" />
+	<!--<link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css" />
+	<link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css" />-->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
 <body>
-<body onorientationchange="changePosition();">
 	<h1 align="center">Test Front-to-End</h1>
 	<div id="grid">
 		<table border="0" align="center">
@@ -42,18 +41,10 @@
 	var numbers = [];
 	var appendNums =[];
 	var i=0;
-	var mode = Math.abs(window.orientation) == 90 ? 'landscape' : 'portrait';
-	alert(mode);
-	var wid=window.document.documentElement.clientWidth*0.8 /4
-	alert(wid);
-	
+	var wid=window.document.documentElement.clientWidth*0.8/4
 window.onload= function(){
 	console.log('start');
-	console.log('width='  +window.document.documentElement.clientWidth+' : ' + 'height=' +window.document.documentElement.clientHeight);
-	//(直)
-
-	//(橫)
-	var wid=window.document.documentElement.clientWidth*0.7
+	
 	
 	while (numbers.length < 12) {
         var randomNumber = (parseInt(Math.random() * 12));
@@ -88,22 +79,8 @@ function appendImg () {
 			appendImg(); 			
 		}
 		
-	}, 200)
+	}, 1200)
 }
 
-//圖的長寬 
-var img_width = 320;
-var img_height = 416;
-var ppm;
-function changePosition(){
-	alert('changePosition');
-    //每次翻轉就重新把圖長寬設定一次
-    ppm = window.innerWidth/img_width;
-    document.getElementById('bg_img').style.width = window.innerWidth;
-    document.getElementById('bg_img').style.height = img_height*ppm;
-    //把網址列藏起來
-    setTimeout('window.scrollTo(0,1);', 5);
-}
-changePosition();
 </script>
 </html>
