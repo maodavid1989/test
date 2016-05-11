@@ -2,43 +2,59 @@
 <html>
 
 <head>
-<title>Test Front-to-End</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<title>Test Front-to-End</title>
+	<link rel="stylesheet" media="all and (orientation:portrait)" href="portrait.css" />
+	<link rel="stylesheet" media="all and (orientation:landscape)" href="landscape.css" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
 <body>
-
+<body onorientationchange="changePosition();">
 	<h1 align="center">Test Front-to-End</h1>
-
 	<div id="grid">
-		<table border="1" align="center">
+		<table border="0" align="center">
 			<tr>
-				<td height="160" width="160" id="x00"></td>
-				<td height="160" width="160" id="x01"></td>
-				<td height="160" width="160" id="x02"></td>
-				<td height="160" width="160" id="x03"></td>
+				<td id="x00"></td>
+				<td id="x01"></td>
+				<td id="x02"></td>
+				<td id="x03"></td>
 			</tr>
 			<tr>
-				<td height="160" width="160" id="x04"></td>
-				<td height="160" width="160" id="x05"></td>
-				<td height="160" width="160" id="x06"></td>
-				<td height="160" width="160" id="x07"></td>
+				<td id="x04"></td>
+				<td id="x05"></td>
+				<td id="x06"></td>
+				<td id="x07"></td>
 			</tr>
 			<tr>
-				<td height="160" width="160" id="x08"></td>
-				<td height="160" width="160" id="x09"></td>
-				<td height="160" width="160" id="x010"></td>
-				<td height="160" width="160" id="x011"></td>
+				<td id="x08"></td>
+				<td id="x09"></td>
+				<td id="x010"></td>
+				<td id="x011"></td>
 			</tr>
 		</table>
 	</div>
 
 </body>
 <script>
-var numbers = [];
-var appendNums =[];
-var i=0;
+
+	var numbers = [];
+	var appendNums =[];
+	var i=0;
+	var mode = Math.abs(window.orientation) == 90 ? 'landscape' : 'portrait';
+	alert(mode);
+	var wid=window.document.documentElement.clientWidth*0.8 /4
+	alert(wid);
+	
 window.onload= function(){
-	console.log('start');	
+	console.log('start');
+	console.log('width='  +window.document.documentElement.clientWidth+' : ' + 'height=' +window.document.documentElement.clientHeight);
+	//(直)
+
+	//(橫)
+	var wid=window.document.documentElement.clientWidth*0.7
+	
 	while (numbers.length < 12) {
         var randomNumber = (parseInt(Math.random() * 12));
         if (numbers.indexOf(randomNumber) == -1) {
@@ -64,6 +80,9 @@ function appendImg () {
 		var imgId="x0"+appendNums[i];
 		var div = document.getElementById(imgId).appendChild(img);
 		img.src = 'images/'+numbers[i]+'.png';
+		img.style.height = wid+"px";
+		img.style.width = wid+"px";
+		img.height='50';
 		if (i < 12 - 1) {   
 			i++;
 			appendImg(); 			
@@ -72,7 +91,19 @@ function appendImg () {
 	}, 200)
 }
 
-
-
+//圖的長寬 
+var img_width = 320;
+var img_height = 416;
+var ppm;
+function changePosition(){
+	alert('changePosition');
+    //每次翻轉就重新把圖長寬設定一次
+    ppm = window.innerWidth/img_width;
+    document.getElementById('bg_img').style.width = window.innerWidth;
+    document.getElementById('bg_img').style.height = img_height*ppm;
+    //把網址列藏起來
+    setTimeout('window.scrollTo(0,1);', 5);
+}
+changePosition();
 </script>
 </html>
